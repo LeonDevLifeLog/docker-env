@@ -28,26 +28,8 @@ services:
       - SONARQUBE_JDBC_PASSWORD=sonar
     links:
       - sonarqubedb
-  nexus:
-    image: sonatype/nexus3:3.14.0
-    ports:
-      - 8081:8081
   gerrit:
       image: gerritforge/gerrit-ubuntu15.04:2.13.6
       ports:
         - 8083:8080
         - "29418:29418"
-  selenium-hub:
-      image: selenium/hub:2.53.0
-      ports:
-        - 4444:4444
-  node-firefox:
-      image: selenium/node-firefox:2.53.0
-      ports:
-        - 5555:5555
-      environment:
-        - REMOTE_HOST=http://node-firefox:5555
-        - HUB_PORT_4444_TCP_ADDR=selenium-hub
-        - HUB_PORT_4444_TCP_PORT=4444
-      links:
-        - selenium-hub
